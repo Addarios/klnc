@@ -10,9 +10,18 @@ from courses.views import course_list, lesson_detail # Dodaj import
 from courses import views as course_views # Importuje cały plik jako obiekt 'course_views'
 from pages.views import newsletter_signup
 
+
+from django.core.management import call_command
+from django.http import HttpResponse
+
+def force_migrate(request):
+    call_command('migrate', interactive=False)
+    return HttpResponse("Migracja wykonana!")
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view, name='home'),
+    path('force-migrate/', force_migrate), # Dodaj to tymczasowo
+    path('', include('pages.urls')),
     path('blog/', blog_list, name='blog'),
     path('kontakt/', contact_view, name='contact'),
     path('blog/<int:pk>/', post_detail, name='post_detail'),
