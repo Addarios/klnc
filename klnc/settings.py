@@ -28,10 +28,8 @@ SECRET_KEY = 'django-insecure-z_!#duk-nnq^@&-uyv&*bgdif$06frbos_%sxm!ldsnsswh2$9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = ['klnc-1.onrender.com', 'localhost', '127.0.0.1']
+
 
 # Application definition
 
