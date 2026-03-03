@@ -103,17 +103,25 @@ main, .container {
     flex: 1 0 auto;
 }
 
-/* --- Cookie Banner Styles --- */
+/* Styl dla banera cookies */
 .cookie-banner {
-    position: fixed;
-    bottom: 0;
+    position: fixed;           /* Przytwierdza element do okna przeglądarki */
+    bottom: 0;                 /* Przykleja do dolnej krawędzi */
     left: 0;
     right: 0;
-    background-color: #ffffff;
-    z-index: 10000; /* Bardzo wysoki priorytet */
-    box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
-    transition: opacity 0.3s ease;
-    display: none; /* Domyślnie ukryty, JS go pokaże */
+    width: 100%;
+    background-color: #ffffff; /* Białe tło dla kontrastu z ciemnym footerem */
+    z-index: 10000;            /* Wyżej niż navbar i inne elementy */
+    transition: opacity 0.3s ease-in-out; /* Płynne znikanie */
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15); /* Cień nad banerem */
+}
+
+/* Opcjonalne: poprawka dla urządzeń mobilnych */
+@media (max-width: 768px) {
+    .cookie-banner .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
 }
 
 /* Animacja wjazdu od dołu */

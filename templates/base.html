@@ -92,7 +92,7 @@
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
                 <h5 class="fw-bold mb-4 text-primary">Moja Platforma IT</h5>
-                <p class="text-muted small">
+                <p class="text-white-50 small">
                     Łączymy nowoczesne technologie Low-Code nAxiom z praktyczną nauką baz danych SQL. Tworzymy narzędzia, które napędzają biznes.
                 </p>
                 <div class="social-links mt-3">
@@ -190,6 +190,11 @@
                 
                 // Ukryj baner natychmiast
                 cookieBanner.style.opacity = '0';
+                // I upewnij się, że styl początkowy (gdy display: block) ma opacity: 1
+                if (!localStorage.getItem('cookiesAccepted')) {
+                    cookieBanner.style.display = 'block';
+                    cookieBanner.style.opacity = '1'; // Dodaj to
+                }
                 setTimeout(() => {
                     cookieBanner.style.display = 'none';
                 }, 300);
