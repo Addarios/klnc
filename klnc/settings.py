@@ -88,7 +88,8 @@ WSGI_APPLICATION = 'klnc.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3', # Jeśli nie znajdzie bazy Rendera, użyje lokalnej
+        # Jeśli zmienna DATABASE_URL nie istnieje (np. lokalnie), użyje SQLite
+        default='sqlite:///db.sqlite3',
         conn_max_age=600
     )
 }
