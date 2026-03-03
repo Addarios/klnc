@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views # Import widoków auth
 from courses.views import course_list, lesson_detail # Dodaj import
 from courses import views as course_views # Importuje cały plik jako obiekt 'course_views'
+from pages.views import newsletter_signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,6 +23,8 @@ urlpatterns = [
     path('sql-kurs/lekcja/<slug:slug>/', course_views.lesson_detail, name='lesson_detail'),
     path('sql-kurs/complete/<slug:slug>/', course_views.complete_lesson, name='complete_lesson'),
     path('oferta/naxiom/', naxiom_view, name='naxiom_page'),
+    path('accounts/', include('accounts.urls')),
+    path('newsletter-signup/', newsletter_signup, name='newsletter_signup'),
     ]
 
 if settings.DEBUG:

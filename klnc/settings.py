@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'contact',
     'django_summernote',
     'courses',
+    'accounts',
+    'crispy_forms', # Jeśli zainstalowałeś crispy-forms
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'course_list'
 LOGOUT_REDIRECT_URL = 'home'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
