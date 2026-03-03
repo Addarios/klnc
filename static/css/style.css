@@ -78,3 +78,27 @@ body {
 main, .container {
     flex: 1 0 auto;
 }
+
+/* --- Cookie Banner Styles --- */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    z-index: 10000; /* Bardzo wysoki priorytet */
+    box-shadow: 0 -5px 25px rgba(0,0,0,0.15);
+    transition: opacity 0.3s ease;
+    display: none; /* Domyślnie ukryty, JS go pokaże */
+}
+
+/* Animacja wjazdu od dołu */
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.cookie-banner.show {
+    display: block !important;
+    animation: slideUp 0.5s forwards;
+}
