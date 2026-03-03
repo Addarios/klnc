@@ -1,17 +1,41 @@
 /* --- Globalne ustawienia --- */
 body {
-    padding-top: 80px; /* Miejsce na fixed navbar */
+    padding-top: 76px; /* Dokładna wysokość domyślnego navbara Bootstrap 5 */
+    margin: 0;
+    overflow-x: hidden;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Zapobiega pojawianiu się paska przewijania w bok */
+}
+
+#heroCarousel {
+    width: 100%;
+    margin-top: 0 !important; /* Usuwamy ujemny margines, który ją podciągał */
 }
 
 /* --- Nawigacja i Karuzela --- */
+
+
 .carousel-item {
-    padding-top: 80px;
+    height: 600px; /* Możesz zmienić na 70vh, jeśli wolisz bardziej dynamiczną wysokość */
+    background-size: cover;
+    background-position: center;
 }
 
 .carousel-fade .carousel-item {
     transition-duration: 0.8s;
 }
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85); /* Jaśniejszy niż domyślny */
+    transition: color 0.3s ease;
+}
 
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #fff; /* Czysty biały przy najechaniu/aktywności */
+}
 @media (max-width: 768px) {
     .carousel-item { height: 500px !important; }
     .carousel-item h1 { font-size: 2rem; }

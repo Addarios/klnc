@@ -3,47 +3,59 @@
 {% block title %}Aktualności | Moja Firma{% endblock %}
 
 {% block content %}
-<div class="row mb-4 text-center">
-    <div class="col">
-        <h1 class="display-5 fw-bold">Nasz Blog</h1>
-        <p class="text-muted">Dowiedz się, co słychać w naszej branży.</p>
+<div class="container mt-5 mb-5">
+    
+    <div class="row mb-4 text-center">
+        <div class="col">
+            <h1 class="display-5 fw-bold">Nasz Blog</h1>
+            <p class="text-muted fs-5">Dowiedz się, co słychać w naszej branży.</p>
+        </div>
     </div>
-</div>
-{% if selected_tag %}
-    <div class="alert alert-info d-flex justify-content-between align-items-center">
-        <span>Pokazujesz wpisy z kategorii: <strong>{{ selected_tag }}</strong></span>
-        <a href="{% url 'blog' %}" class="btn btn-sm btn-outline-info">Pokaż wszystkie</a>
-    </div>
-{% endif %}
-    <div class="row">
-        {% for post in posts %}
-    <div class="card h-100 shadow-sm">
-        {% if post.image %}
-            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-        {% endif %}
-        <div class="card-body">
-            <div class="mb-2">
-                {% if post.tag == 'naxiom' %}
-                    <span class="badge rounded-pill bg-primary">nAxiom</span>
-                {% elif post.tag == 'sql' %}
-                    <span class="badge rounded-pill bg-info text-dark">Kurs SQL</span>
-                {% else %}
-                    <span class="badge rounded-pill bg-secondary">Ogólne</span>
-                {% endif %}
-            </div>
 
-            <h5 class="card-title fw-bold">{{ post.title }}</h5>
-            <p class="card-text text-muted">{{ post.content|truncatewords:20 }}</p>
-            <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-outline-primary btn-sm">Czytaj więcej</a>
+    {% if selected_tag %}
+        <div class="alert alert-info d-flex justify-content-between align-items-center rounded-pill px-4">
+            <span>Pokazujesz wpisy z kategorii: <strong>{{ selected_tag }}</strong></span>
+            <a href="{% url 'blog' %}" class="btn btn-sm btn-outline-info rounded-pill">Pokaż wszystkie</a>
         </div>
-        <div class="card-footer bg-transparent border-top-0">
-            <small class="text-muted">Opublikowano: {{ post.published_date|date:"d.m.Y" }}</small>
+    {% endif %}
+
+    <div class="row g-4"> {% for post in posts %}
+        <div class="col-md-4"> <div class="card h-100 shadow-sm border-0 hover-up">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                
+                <div class="card-body">
+                    <div class="mb-2">
+                        {% if post.tag == 'naxiom' %}
+                            <span class="badge rounded-pill bg-primary">nAxiom</span>
+                        {% elif post.tag == 'sql' %}
+                            <span class="badge rounded-pill bg-info text-dark">Kurs SQL</span>
+                        {% else %}
+                            <span class="badge rounded-pill bg-secondary">Ogólne</span>
+                        {% endif %}
+                    </div>
+
+                    <h5 class="card-title fw-bold">{{ post.title }}</h5>
+                    <p class="card-text text-muted small">{{ post.content|truncatewords:15 }}</p>
+                </div>
+
+                <div class="card-footer bg-transparent border-top-0 pb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-sm btn-outline-primary px-3">Czytaj więcej</a>
+                        <small class="text-muted">{{ post.published_date|date:"d.m.Y" }}</small>
+                    </div>
+                </div>
+            </div>
         </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <div class="p-5 bg-light rounded-5">
+                <i class="bi bi-journal-x display-1 text-muted"></i>
+                <p class="lead mt-3">Nie dodano jeszcze żadnych wpisów. Zajrzyj do panelu admina!</p>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% empty %}
-    <div class="col-12 text-center py-5">
-        <p class="lead">Nie dodano jeszcze żadnych wpisów. Zajrzyj do panelu admina!</p>
-    </div>
-    {% endfor %}
 </div>
 {% endblock %}

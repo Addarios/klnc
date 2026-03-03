@@ -5,16 +5,16 @@
 {% block content %}
 <section id="heroCarousel" class="carousel slide carousel-fade shadow-lg" data-bs-ride="carousel" style="margin-top: -80px;">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
     </div>
 
     <div class="carousel-inner">
         <div class="carousel-item active" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426') center/cover; height: 600px;">
             <div class="container h-100 d-flex align-items-center">
                 <div class="text-white col-lg-7">
-                    <h1 class="display-3 fw-bold mb-3 animate__animated animate__fadeInDown">Platforma Low-Code nAxiom</h1>
+                    <h1 class="display-3 fw-bold mb-3">Platforma Low-Code nAxiom</h1>
                     <p class="lead mb-4 fs-4">Automatyzacja procesów biznesowych bez zbędnych barier technologicznych.</p>
                     <a href="{% url 'naxiom_page' %}" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">Poznaj ofertę</a>
                 </div>
@@ -43,20 +43,18 @@
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Poprzedni</span>
+        <span class="carousel-control-prev-icon"></span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Następny</span>
+        <span class="carousel-control-next-icon"></span>
     </button>
 </section>
 
-<div class="container">
+<div class="container bg-white p-5 shadow-sm rounded mb-5" style="margin-top: 50px;">
     <div class="row mb-4">
         <div class="col-12 d-flex justify-content-between align-items-end mb-4">
             <h2 class="fw-bold mb-0">Najnowsze na blogu</h2>
-            <a href="{% url 'blog' %}" class="text-primary text-decoration-none">Zobacz wszystkie &rarr;</a>
+            <a href="{% url 'blog' %}" class="text-primary text-decoration-none">Zobacz wszystkie →</a>
         </div>
         
         {% for post in latest_posts %}
@@ -97,5 +95,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

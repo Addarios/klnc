@@ -11,59 +11,70 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark shadow">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">MOJA FIRMA</a>
-            <div class="navbar-nav">
-                <a class="nav-link active" href="{% url 'home' %}">Start</a>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Oferta
-                    </a>
-                    <ul class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{% url 'naxiom_page' %}">
-                                <i class="bi bi-cpu me-2 text-primary"></i>
-                                Platforma Low-Code nAxiom
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-code-slash me-2 text-secondary"></i>
-                                Inne usługi IT
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-headset me-2 text-secondary"></i>
-                                Wsparcie techniczne
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <a class="nav-link" href="{% url 'blog' %}">Blog</a>
-                <a class="nav-link" href="{% url 'contact' %}">Kontakt</a>
-                <a class="nav-link fw-bold text-warning" href="{% url 'course_list' %}">KURS SQL</a>
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">MOJA FIRMA</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Start</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Oferta
+                        </a>
+                        <ul class="dropdown-menu shadow border-0" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="{% url 'naxiom_page' %}">
+                                    <i class="bi bi-cpu me-2 text-primary"></i> nAxiom Low-Code
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-code-slash me-2"></i> Usługi IT</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-headset me-2"></i> Wsparcie</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}" href="{% url 'blog' %}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Kontakt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-warning" href="{% url 'course_list' %}">KURS SQL</a>
+                    </li>
+                </ul>
 
                 <ul class="navbar-nav ms-auto align-items-center">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <span class="nav-link text-white me-3">Witaj, {{ user.username }}!</span>
-                        </li>
-                        <li class="nav-item">
-                            <form action="{% url 'logout' %}" method="post" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-light btn-sm">Wyloguj</button>
-                            </form>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                Witaj, {{ user.username }}!
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i> Profil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{% url 'logout' %}" method="post" class="px-3 py-1">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-sm w-100 rounded-pill">Wyloguj</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'login' %}">Zaloguj się</a>
+                            <a class="nav-link" href="{% url 'login' %}">Zaloguj się</a>
                         </li>
-                        <li class="nav-item ms-lg-2">
-                            <a class="btn btn-primary rounded-pill px-4" href="{% url 'register' %}">Zacznij naukę</a>
+                        <li class="nav-item ms-lg-3">
+                            <a class="btn btn-primary rounded-pill px-4 shadow-sm" href="{% url 'register' %}">Zacznij naukę</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -71,10 +82,10 @@
         </div>
     </nav>
 
-    <div class="container bg-white p-5 shadow-sm rounded">
-        {% block content %}
-        {% endblock %}
-    </div>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
 
 <footer class="footer-main bg-dark text-white pt-5 pb-3 mt-5">
     <div class="container">
