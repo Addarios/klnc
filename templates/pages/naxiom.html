@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row align-items-center shadow-lg rounded-4 p-5 bg-light">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold text-primary mb-4">Platforma Low-Code nAxiom</h1>
+            <p class="lead mb-4">Twórz zaawansowane aplikacje biznesowe bez pisania tysięcy linii kodu. Nasza platforma nAxiom to przyszłość cyfryzacji Twojej firmy.</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg px-4 me-md-2">Zapytaj o demo</a>
+                
+                <a href="{% url 'blog' %}?tag=naxiom" class="btn btn-outline-secondary btn-lg px-4">
+                    Dowiedz się więcej
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded" style="height: 300px;">
+                [Miejsce na grafikę nAxiom]
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

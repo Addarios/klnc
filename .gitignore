@@ -1,0 +1,19 @@
+# Środowisko wirtualne
+venv/
+ENV/
+pyvenv.cfg
+
+# Baza danych (lokalna)
+db.sqlite3
+
+# Pliki tymczasowe Pythona
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pliki multimedialne (zdjęcia użytkowników itp.)
+media/
+
+# Ustawienia VS Code / IDE
+.vscode/
+.idea/

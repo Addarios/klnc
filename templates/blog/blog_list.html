@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Aktualności | Moja Firma{% endblock %}
+
+{% block content %}
+<div class="row mb-4 text-center">
+    <div class="col">
+        <h1 class="display-5 fw-bold">Nasz Blog</h1>
+        <p class="text-muted">Dowiedz się, co słychać w naszej branży.</p>
+    </div>
+</div>
+{% if selected_tag %}
+    <div class="alert alert-info d-flex justify-content-between align-items-center">
+        <span>Pokazujesz wpisy z kategorii: <strong>{{ selected_tag }}</strong></span>
+        <a href="{% url 'blog' %}" class="btn btn-sm btn-outline-info">Pokaż wszystkie</a>
+    </div>
+{% endif %}
+    <div class="row">
+        {% for post in posts %}
+    <div class="card h-100 shadow-sm">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+        {% endif %}
+        <div class="card-body">
+            <div class="mb-2">
+                {% if post.tag == 'naxiom' %}
+                    <span class="badge rounded-pill bg-primary">nAxiom</span>
+                {% elif post.tag == 'sql' %}
+                    <span class="badge rounded-pill bg-info text-dark">Kurs SQL</span>
+                {% else %}
+                    <span class="badge rounded-pill bg-secondary">Ogólne</span>
+                {% endif %}
+            </div>
+
+            <h5 class="card-title fw-bold">{{ post.title }}</h5>
+            <p class="card-text text-muted">{{ post.content|truncatewords:20 }}</p>
+            <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-outline-primary btn-sm">Czytaj więcej</a>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+            <small class="text-muted">Opublikowano: {{ post.published_date|date:"d.m.Y" }}</small>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="lead">Nie dodano jeszcze żadnych wpisów. Zajrzyj do panelu admina!</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

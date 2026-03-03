@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} | Blog Firmowy{% endblock %}
+
+{% block content %}
+<article class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-decoration-none">Start</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'blog' %}" class="text-decoration-none">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page text-truncate">{{ post.title|truncatechars:30 }}</li>
+                </ol>
+            </nav>
+
+            <header class="mb-4">
+                <div class="mb-3">
+                    {% if post.tag == 'naxiom' %}
+                        <a href="{% url 'blog' %}?tag=naxiom" class="text-decoration-none">
+                            <span class="badge rounded-pill bg-primary px-3 py-2">nAxiom</span>
+                        </a>
+                    {% elif post.tag == 'sql' %}
+                        <a href="{% url 'blog' %}?tag=sql" class="text-decoration-none">
+                            <span class="badge rounded-pill bg-info text-dark px-3 py-2">Kurs SQL</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'blog' %}?tag=ogolne" class="text-decoration-none">
+                            <span class="badge rounded-pill bg-secondary px-3 py-2">Ogólne</span>
+                        </a>
+                    {% endif %}
+                </div>
+                
+                <h1 class="display-4 fw-bold mb-3">{{ post.title }}</h1>
+                
+                <div class="d-flex align-items-center text-muted">
+                    <i class="bi bi-person-circle fs-5 me-2"></i>
+                    <span class="me-3">Autor: <strong>{{ post.author.username }}</strong></span>
+                    <i class="bi bi-calendar3 me-2"></i>
+                    <span>{{ post.published_date|date:"d F Y" }}</span>
+                </div>
+            </header>
+
+            {% if post.image %}
+                <div class="mb-5 shadow-sm rounded-4 overflow-hidden">
+                    <img src="{{ post.image.url }}" class="img-fluid w-100" alt="{{ post.title }}" style="max-height: 500px; object-fit: cover;">
+                </div>
+            {% endif %}
+
+            <section class="post-content fs-5 text-dark lh-base">
+                {{ post.content|linebreaks }}
+            </section>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{% url 'blog' %}" class="btn btn-secondary">&larr; Powrót do listy</a>
+
+
+
+                    
+                    <div class="share-buttons">
+                        <span class="small text-muted me-2">Podziel się:</span>
+                        <a href="#" class="text-primary me-2"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-info me-2"><i class="bi bi-twitter-x fs-4"></i></a>
+                        <a href="#" class="text-dark"><i class="bi bi-linkedin fs-4"></i></a>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="sticky-top" style="top: 100px;">
+                <div class="card border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-3">O autorze</h5>
+                        <p class="small text-muted mb-0">Wpis przygotowany przez zespół ekspertów naszej firmy. Chcesz dowiedzieć się więcej o naszej ofercie?</p>
+                        <hr>
+                        <a href="{% url 'contact' %}" class="btn btn-sm btn-primary w-100">Skontaktuj się z nami</a>
+                    </div>
+                </div>
+                
+                <div class="mt-4 ps-2">
+                    <h6 class="fw-bold text-uppercase small text-muted">Kategorie</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'blog' %}?tag=naxiom" class="text-decoration-none">nAxiom</a></li>
+                        <li><a href="{% url 'blog' %}?tag=sql" class="text-decoration-none">Kursy SQL</a></li>
+                        <li><a href="{% url 'blog' %}?tag=ogolne" class="text-decoration-none">Ogólne porady</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock %}

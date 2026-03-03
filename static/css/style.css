@@ -1,0 +1,80 @@
+/* --- Globalne ustawienia --- */
+body {
+    padding-top: 80px; /* Miejsce na fixed navbar */
+}
+
+/* --- Nawigacja i Karuzela --- */
+.carousel-item {
+    padding-top: 80px;
+}
+
+.carousel-fade .carousel-item {
+    transition-duration: 0.8s;
+}
+
+@media (max-width: 768px) {
+    .carousel-item { height: 500px !important; }
+    .carousel-item h1 { font-size: 2rem; }
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+/* --- Blog i Karty --- */
+.hover-up {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-up:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+}
+
+.post-content p { margin-bottom: 1.5rem; }
+.post-content h2, .post-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* --- Kursy i Lekcje --- */
+.lesson-content pre {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.sticky-top {
+    top: 100px !important;
+}
+/* --- Style Stopki --- */
+.footer-main {
+    border-top: 4px solid #0d6efd; /* Subtelny pasek w kolorze primary na samej górze */
+}
+
+.footer-main a:hover {
+    color: #0d6efd !important;
+    transition: color 0.3s ease;
+}
+
+.footer-main .social-links a {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.footer-main .social-links a:hover {
+    transform: translateY(-3px);
+}
+
+/* Zapewnienie, że stopka zawsze będzie na dole strony, nawet przy małej ilości treści */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main, .container {
+    flex: 1 0 auto;
+}
