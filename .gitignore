@@ -17,3 +17,6 @@ media/
 # Ustawienia VS Code / IDE
 .vscode/
 .idea/
+
+
+.env
