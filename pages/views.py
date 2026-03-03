@@ -2,14 +2,18 @@ from django.shortcuts import render
 from blog.models import Post
 from django.http import JsonResponse, HttpResponse
 from accounts.models import NewsletterUser
+from django.db import connection
 
 def home_view(request):
-    # Zakomentuj to na chwilę:
-    # posts = Post.objects.all()
-    # return render(request, 'pages/home.html', {'posts': posts})
+    # Sprawdzamy, czy tabela blog_post w ogóle istnieje w bazie danych
+    all_tables = connection.introspection.table_names()
     
-    # Zwróć prosty tekst:
-    return HttpResponse("Strona działa, teraz naprawiamy bazę!")
+    if "blog_post" in all_tables:
+        from blog.models import Post
+        posts = Post.objects.all()
+        return render(request, 'pages/home.html', {'posts': posts})
+    else:
+        return HttpResponse("Serwer działa, ale tabela 'blog_post' wciąż nie powstała w PostgreSQL.")
 
 def naxiom_view(request):
     return render(request, 'pages/naxiom.html')
