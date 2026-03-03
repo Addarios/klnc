@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from blog.models import Post
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from accounts.models import NewsletterUser
 
 def home_view(request):
