@@ -4,9 +4,12 @@ from django.http import JsonResponse
 from accounts.models import NewsletterUser
 
 def home_view(request):
-    # Pobieramy 3 najnowsze posty
-    latest_posts = Post.objects.all().order_by('-published_date')[:3]
-    return render(request, 'pages/home.html', {'latest_posts': latest_posts})
+    # Zakomentuj to na chwilę:
+    # posts = Post.objects.all()
+    # return render(request, 'pages/home.html', {'posts': posts})
+    
+    # Zwróć prosty tekst:
+    return HttpResponse("Strona działa, teraz naprawiamy bazę!")
 
 def naxiom_view(request):
     return render(request, 'pages/naxiom.html')
