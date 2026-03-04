@@ -9,6 +9,7 @@ from django.contrib.auth import views as auth_views # Import widoków auth
 from courses.views import course_list, lesson_detail # Dodaj import
 from courses import views as course_views # Importuje cały plik jako obiekt 'course_views'
 from pages.views import newsletter_signup
+from two_factor.urls import urlpatterns as tf_urls
 
 
 def force_migrate(request):
@@ -16,8 +17,9 @@ def force_migrate(request):
     return HttpResponse("Migracja wykonana!")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('klnc-adm/', admin.site.urls),
     path('', home_view, name='home'),
+    path('', include(tf_urls)),
     path('blog/', blog_list, name='blog'),
     path('kontakt/', contact_view, name='contact'),
     path('blog/<int:pk>/', post_detail, name='post_detail'),
