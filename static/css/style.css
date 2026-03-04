@@ -2,7 +2,7 @@
    1. GLOBALNE USTAWIENIA (Struktura i Typografia)
    ========================================================================== */
 body {
-    padding-top: 90px; 
+    padding-top: 100px; 
     margin: 0;
     overflow-x: hidden;
     display: flex;
@@ -13,7 +13,7 @@ body {
 /* Dostosowanie odstępu dla mniejszych ekranów (navbar może być wyższy) */
 @media (max-width: 991px) {
     body {
-        padding-top: 100px;
+        padding-top: 120px;
     }
 }
 
