@@ -8,7 +8,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views # Import widoków auth
 from courses.views import course_list, lesson_detail # Dodaj import
 from courses import views as course_views # Importuje cały plik jako obiekt 'course_views'
-from pages.views import newsletter_signup
+from pages.views import newsletter_signup, check_admin
 from two_factor.urls import urlpatterns as tf_urls
 
 
