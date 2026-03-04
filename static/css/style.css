@@ -1,52 +1,97 @@
-/* --- Globalne ustawienia --- */
+/* ==========================================================================
+   1. GLOBALNE USTAWIENIA (Struktura i Typografia)
+   ========================================================================== */
 body {
-    padding-top: 76px; /* Dokładna wysokość domyślnego navbara Bootstrap 5 */
+    padding-top: 80px; 
     margin: 0;
     overflow-x: hidden;
-}
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Zapobiega pojawianiu się paska przewijania w bok */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-#heroCarousel {
-    width: 100%;
-    margin-top: 0 !important; /* Usuwamy ujemny margines, który ją podciągał */
+/* Dostosowanie odstępu dla mniejszych ekranów (navbar może być wyższy) */
+@media (max-width: 991px) {
+    body {
+        padding-top: 100px;
+    }
 }
 
-/* --- Nawigacja i Karuzela --- */
-
-
-.carousel-item {
-    height: 600px; /* Możesz zmienić na 70vh, jeśli wolisz bardziej dynamiczną wysokość */
-    background-size: cover;
-    background-position: center;
+main, .container {
+    flex: 1 0 auto; /* Gwarantuje, że stopka zawsze będzie na dole */
 }
 
-.carousel-fade .carousel-item {
-    transition-duration: 0.8s;
-}
+/* ==========================================================================
+   2. NAWIGACJA (Navbar i Dropdown)
+   ========================================================================== */
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.85); /* Jaśniejszy niż domyślny */
+    color: rgba(255, 255, 255, 0.85);
     transition: color 0.3s ease;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link.active {
-    color: #fff; /* Czysty biały przy najechaniu/aktywności */
+    color: #fff;
 }
+
+/* Rozwijanie menu po najechaniu myszką na komputerach */
+@media (min-width: 992px) {
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+
+/* Elementy przyklejone pod navbarem */
+.sticky-top {
+    top: 100px !important;
+}
+
+/* ==========================================================================
+   3. KARUZELA (Hero Section)
+   ========================================================================== */
+#heroCarousel {
+    width: 100%;
+}
+
+.carousel-item {
+    height: 90vh;
+    min-height: 500px;
+    background: no-repeat center center scroll;
+    background-size: cover;
+}
+
+.carousel-fade .carousel-item {
+    transition-duration: 0.8s;
+}
+
+.carousel-caption {
+    bottom: 15%; /* Podniesienie napisów dla lepszej czytelności przycisków */
+}
+
+/* Responsywność karuzeli */
 @media (max-width: 768px) {
-    .carousel-item { height: 500px !important; }
-    .carousel-item h1 { font-size: 2rem; }
+    .carousel-item {
+        height: 500px !important;
+    }
+    .carousel-caption h1 {
+        font-size: 1.8rem;
+    }
+    .carousel-caption .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        display: block;   /* Przyciski jeden pod drugim na mobile */
+        margin: 10px auto;
+        width: 80%;
+    }
+    .carousel-caption .ms-3 {
+        margin-left: 0 !important;
+    }
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
-}
-
-/* --- Blog i Karty --- */
+/* ==========================================================================
+   4. BLOG I KOMPONENTY (Karty, Treść)
+   ========================================================================== */
 .hover-up {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -56,26 +101,31 @@ body, html {
     box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
 }
 
-.post-content p { margin-bottom: 1.5rem; }
-.post-content h2, .post-content h3 {
+.post-content p { 
+    margin-bottom: 1.5rem; 
+}
+
+.post-content h2, 
+.post-content h3 {
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: bold;
 }
 
-/* --- Kursy i Lekcje --- */
+/* ==========================================================================
+   5. KURSY I LEKCJE (SQL, Kod)
+   ========================================================================== */
 .lesson-content pre {
     background-color: #f8f9fa;
     border-radius: 8px;
     padding: 15px;
 }
 
-.sticky-top {
-    top: 100px !important;
-}
-/* --- Style Stopki --- */
+/* ==========================================================================
+   6. STOPKA (Footer)
+   ========================================================================== */
 .footer-main {
-    border-top: 4px solid #0d6efd; /* Subtelny pasek w kolorze primary na samej górze */
+    border-top: 4px solid #0d6efd;
 }
 
 .footer-main a:hover {
@@ -92,39 +142,22 @@ body, html {
     transform: translateY(-3px);
 }
 
-/* Zapewnienie, że stopka zawsze będzie na dole strony, nawet przy małej ilości treści */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main, .container {
-    flex: 1 0 auto;
-}
-
-/* Styl dla banera cookies */
+/* ==========================================================================
+   7. BANER COOKIES
+   ========================================================================== */
 .cookie-banner {
-    position: fixed;           /* Przytwierdza element do okna przeglądarki */
-    bottom: 0;                 /* Przykleja do dolnej krawędzi */
+    position: fixed;
+    bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    background-color: #ffffff; /* Białe tło dla kontrastu z ciemnym footerem */
-    z-index: 10000;            /* Wyżej niż navbar i inne elementy */
-    transition: opacity 0.3s ease-in-out; /* Płynne znikanie */
-    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15); /* Cień nad banerem */
+    background-color: #ffffff;
+    z-index: 10000;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+    display: none; /* Domyślnie ukryte, kontrolowane przez JS */
 }
 
-/* Opcjonalne: poprawka dla urządzeń mobilnych */
-@media (max-width: 768px) {
-    .cookie-banner .btn {
-        width: 100%;
-        margin-top: 10px;
-    }
-}
-
-/* Animacja wjazdu od dołu */
+/* Styl i animacja wjazdu */
 @keyframes slideUp {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
@@ -135,4 +168,9 @@ main, .container {
     animation: slideUp 0.5s forwards;
 }
 
-
+@media (max-width: 768px) {
+    .cookie-banner .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
