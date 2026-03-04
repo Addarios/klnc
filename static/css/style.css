@@ -2,7 +2,7 @@
    1. GLOBALNE USTAWIENIA (Struktura i Typografia)
    ========================================================================== */
 body {
-    padding-top: 80px; 
+    padding-top: 90px; 
     margin: 0;
     overflow-x: hidden;
     display: flex;
@@ -19,6 +19,16 @@ body {
 
 main, .container {
     flex: 1 0 auto; /* Gwarantuje, że stopka zawsze będzie na dole */
+}
+main {
+    margin-top: 20px; 
+}
+h1, h2 {
+    scroll-margin-top: 110px; /* Ważne, gdy ktoś klika w link do sekcji */
+}
+.login-container, .register-container, .contact-section {
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
 /* ==========================================================================
