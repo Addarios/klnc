@@ -30,3 +30,15 @@ def newsletter_signup(request):
             else:
                 return JsonResponse({'status': 'info', 'message': 'Ten e-mail jest już w naszej bazie.'})
     return JsonResponse({'status': 'error', 'message': 'Coś poszło nie tak.'}, status=400)
+
+
+# pages/views.py
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def check_admin(request):
+    admins = User.objects.filter(is_superuser=True)
+    if admins.exists():
+        admin_list = ", ".join([u.username for u in admins])
+        return HttpResponse(f"Znaleziono superadministratorów: {admin_list}")
+    return HttpResponse("Brak superużytkowników w bazie danych!")

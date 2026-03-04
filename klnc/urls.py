@@ -32,6 +32,7 @@ urlpatterns = [
     path('oferta/naxiom/', naxiom_view, name='naxiom_page'),
     path('accounts/', include('accounts.urls')),
     path('newsletter-signup/', newsletter_signup, name='newsletter_signup'),
+    path('check-admin/', views.check_admin)
     ]
 
 if settings.DEBUG:
