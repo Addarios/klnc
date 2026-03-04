@@ -10,23 +10,30 @@ body {
     min-height: 100vh;
 }
 
-/* Dostosowanie odstępu dla mniejszych ekranów (navbar może być wyższy) */
+/* Adaptacja dla mniejszych ekranów - navbar może być wyższy po zawinięciu */
 @media (max-width: 991px) {
     body {
         padding-top: 120px;
     }
 }
 
-main, .container {
-    flex: 1 0 auto; /* Gwarantuje, że stopka zawsze będzie na dole */
-}
 main {
-    margin-top: 20px; 
+    flex: 1 0 auto;
+    margin-top: 2rem; /* Odstęp treści od navbara */
 }
+
+.container {
+    flex: 1 0 auto;
+}
+
 h1, h2 {
-    scroll-margin-top: 110px; /* Ważne, gdy ktoś klika w link do sekcji */
+    scroll-margin-top: 110px; /* Zapobiega zasłanianiu nagłówków przez navbar przy linkach wewnętrznych */
 }
-.login-container, .register-container, .contact-section {
+
+/* Kontenery sekcji specjalnych */
+.login-container, 
+.register-container, 
+.contact-section {
     padding-top: 40px;
     padding-bottom: 60px;
 }
@@ -44,7 +51,7 @@ h1, h2 {
     color: #fff;
 }
 
-/* Rozwijanie menu po najechaniu myszką na komputerach */
+/* Rozwijanie menu po najechaniu myszką (tylko desktopy) */
 @media (min-width: 992px) {
     .nav-item.dropdown:hover .dropdown-menu {
         display: block;
@@ -52,9 +59,8 @@ h1, h2 {
     }
 }
 
-/* Elementy przyklejone pod navbarem */
 .sticky-top {
-    top: 100px !important;
+    top: 110px !important; /* Dopasowane do wysokości navbara */
 }
 
 /* ==========================================================================
@@ -76,10 +82,11 @@ h1, h2 {
 }
 
 .carousel-caption {
-    bottom: 15%; /* Podniesienie napisów dla lepszej czytelności przycisków */
+    bottom: 15%;
+    z-index: 10;
 }
 
-/* Responsywność karuzeli */
+/* Responsywność karuzeli i przycisków */
 @media (max-width: 768px) {
     .carousel-item {
         height: 500px !important;
@@ -88,11 +95,11 @@ h1, h2 {
         font-size: 1.8rem;
     }
     .carousel-caption .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        display: block;   /* Przyciski jeden pod drugim na mobile */
+        padding: 12px 20px;
+        font-size: 1rem;
+        display: block;
         margin: 10px auto;
-        width: 80%;
+        width: 85%;
     }
     .carousel-caption .ms-3 {
         margin-left: 0 !important;
@@ -100,7 +107,33 @@ h1, h2 {
 }
 
 /* ==========================================================================
-   4. BLOG I KOMPONENTY (Karty, Treść)
+   4. FORMULARZE (Logowanie, Rejestracja, 2FA)
+   ========================================================================== */
+.card {
+    background: #ffffff;
+    border: none;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+    outline: 0;
+}
+
+.two-factor-setup-container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   5. BLOG I KOMPONENTY (Karty, Treść)
    ========================================================================== */
 .hover-up {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -123,19 +156,21 @@ h1, h2 {
 }
 
 /* ==========================================================================
-   5. KURSY I LEKCJE (SQL, Kod)
+   6. KURSY I LEKCJE (SQL, Kod)
    ========================================================================== */
 .lesson-content pre {
     background-color: #f8f9fa;
     border-radius: 8px;
     padding: 15px;
+    border: 1px solid #e9ecef;
 }
 
 /* ==========================================================================
-   6. STOPKA (Footer)
+   7. STOPKA (Footer)
    ========================================================================== */
 .footer-main {
     border-top: 4px solid #0d6efd;
+    background-color: #212529;
 }
 
 .footer-main a:hover {
@@ -153,7 +188,7 @@ h1, h2 {
 }
 
 /* ==========================================================================
-   7. BANER COOKIES
+   8. BANER COOKIES
    ========================================================================== */
 .cookie-banner {
     position: fixed;
@@ -164,10 +199,9 @@ h1, h2 {
     background-color: #ffffff;
     z-index: 10000;
     box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
-    display: none; /* Domyślnie ukryte, kontrolowane przez JS */
+    display: none;
 }
 
-/* Styl i animacja wjazdu */
 @keyframes slideUp {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
